@@ -3,18 +3,21 @@
 # Environment: Java
 # Minimum Panel Version: 0.6.0
 # ----------------------------------
-FROM openjdk:8-jdk-alpine
+FROM        --platform=$TARGETOS/$TARGETARCH debian:bookworm-slim
 
-MAINTAINER Pterodactyl Software, <support@pterodactyl.io>
+LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 
-RUN apk add --no-cache --update curl ca-certificates openssl git tar bash sqlite fontconfig \
-    && adduser --disabled-password --home /home/container container
+RUN         apt update \
+            && apt -y install git gcc g++ ca-certificates dnsutils curl iproute2 ffmpeg procps neofetch tini \
+            && useradd -m -d /home/container container
 
-USER container
-ENV  USER=container HOME=/home/container
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
 
-WORKDIR /home/container
+STOPSIGNAL SIGINT
 
-COPY ./entrypoint.sh /entrypoint.sh
-
-CMD ["/bin/bash", "/entrypoint.sh"]
+COPY        --chown=container:container ./entrypoint.sh /entrypoint.sh
+RUN         chmod +x /entrypoint.sh
+ENTRYPOINT    ["/usr/bin/tini", "-g", "--"]
+CMD         ["/entrypoint.sh"]
