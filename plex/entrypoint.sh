@@ -8,9 +8,11 @@ if [ ! -f ASF-linux-x64.zip ]; then
 fi
 unzip -o ASF-linux-x64.zip
 if [ ! -f ArchiSteamFarm-Service.sh ]; then
-    chmod +x ArchiSteamFarm-Service.sh && bash ArchiSteamFarm-Service.sh
+    echo "Error: ArchiSteamFarm's service was not found."
     exit 1
 fi
+chmod +x ArchiSteamFarm-Service.sh
+bash ArchiSteamFarm-Service.sh
 
 MODIFIED_STARTUP=$(eval echo "${STARTUP//\{\{/\${}")
 echo ":/home/container$ ${MODIFIED_STARTUP}"
