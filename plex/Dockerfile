@@ -22,6 +22,7 @@ RUN apt update && apt install -y \
     && apt update \
     && apt install -y plexmediaserver \
     && useradd -m -d /home/container -s /bin/bash container \
+    && adduser -D -h /home/container container \
     && chown -R container:container /home/container
 
 USER container
