@@ -2,8 +2,8 @@
 cd /home/container
 
 # Output Current Java Version
-curl https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-x64.zip ## only really needed to show what version is being used. Should be changed for different applications
-unzip ASF-linux-x64.zip
+# curl https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-x64.zip ## only really needed to show what version is being used. Should be changed for different applications
+# unzip ASF-linux-x64.zip
 
 # Replace Startup Variables
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
