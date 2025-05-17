@@ -13,6 +13,11 @@ if [ ! -f ArchiSteamFarm ]; then
 fi
 chmod +x ArchiSteamFarm
 clear
+if [ "${IPC_PORT}" == "true" || "${IPC_PORT}" == "1" ]; then
+    mkdir -p config
+    echo "{\"Kestrel\":{\"Endpoints\":{\"HTTP\":{\"Url\":\"http://*:${SERVER_PORT}\"}}}}" > config/IPC.config
+    echo "IPC.config created with port ${IPC_PORT}"
+fi
 echo "ArchiSteamFarm is now ready to run."
 
 MODIFIED_STARTUP=$(eval echo "${STARTUP//\{\{/\${}")
