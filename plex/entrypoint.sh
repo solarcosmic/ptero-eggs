@@ -11,11 +11,9 @@ if [ ! -f ArchiSteamFarm ]; then
     echo "Error: ArchiSteamFarm binary executable was not found."
     exit 1
 fi
-echo "Below is a list of the archisteamfarm stuff."
-ls
-echo "Begin ArchiSteamFarm."
 chmod +x ArchiSteamFarm
-./ArchiSteamFarm
+clear
+echo "ArchiSteamFarm is now ready to run."
 
 MODIFIED_STARTUP=$(eval echo "${STARTUP//\{\{/\${}")
 echo ":/home/container$ ${MODIFIED_STARTUP}"
