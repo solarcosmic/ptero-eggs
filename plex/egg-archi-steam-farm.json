@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-05-17T20:50:02+12:00",
+    "exported_at": "2025-05-17T20:54:37+12:00",
     "name": "ArchiSteamFarm",
     "author": "nodeadmin@solarcosmic.net",
     "description": "C# application with primary purpose of farming Steam cards from multiple accounts simultaneously.",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": null,
+            "script": "curl -L -o ASF-linux-x64.zip https:\/\/github.com\/JustArchiNET\/ArchiSteamFarm\/releases\/latest\/download\/ASF-linux-x64.zip\r\nif [ ! -f ASF-linux-x64.zip ]; then\r\n    echo \"Download failed: ASF-linux-x64.zip not found.\"\r\n    exit 1\r\nfi\r\nunzip -o ASF-linux-x64.zip\r\nif [ ! -f ArchiSteamFarm ]; then\r\n    echo \"Error: ArchiSteamFarm binary executable was not found.\"\r\n    exit 1\r\nfi\r\nchmod +x ArchiSteamFarm\r\nclear\r\nif [ \"${IPC_PORT}\" == \"true\" || \"${IPC_PORT}\" == \"1\" ]; then\r\n    mkdir -p config\r\n    echo \"{\\\"Kestrel\\\":{\\\"Endpoints\\\":{\\\"HTTP\\\":{\\\"Url\\\":\\\"http:\/\/*:${SERVER_PORT}\\\"}}}}\" > config\/IPC.config\r\n    echo \"IPC.config created with port ${IPC_PORT}\"\r\nfi\r\necho \"ArchiSteamFarm is now ready to run.\"",
             "container": "alpine:3.4",
             "entrypoint": "ash"
         }
