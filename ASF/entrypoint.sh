@@ -15,8 +15,12 @@ chmod +x ArchiSteamFarm
 clear
 mkdir -p config
 echo "{\"Kestrel\":{\"Endpoints\":{\"HTTP\":{\"Url\":\"http://*:${SERVER_PORT}\"}}}}" > config/IPC.config
-echo "IPC.config created with port ${IPC_PORT}"
-echo "ArchiSteamFarm is now ready to run."
+echo "--------------------------------"
+echo "Thanks for using @solarcosmic's ArchiSteamFarm egg! (solarcosmic.net)"
+echo "IPC.config created. When ArchiSteamFarm is completely up, you should be able to access ASF-ui using the server's address (port ${SERVER_PORT})."
+echo "ArchiSteamFarm is now installed and will now attempt to launch."
+echo "--------------------------------"
+echo
 
 MODIFIED_STARTUP=$(eval echo "${STARTUP//\{\{/\${}")
 echo ":/home/container$ ${MODIFIED_STARTUP}"

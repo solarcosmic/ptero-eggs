@@ -1,7 +1,6 @@
 # ----------------------------------
-# Pterodactyl Core Dockerfile
-# Environment: Java
-# Minimum Panel Version: 0.6.0
+# ArchiSteamFarm Egg by @solarcosmic
+# Environment: Alpine
 # ----------------------------------
 FROM        --platform=$TARGETOS/$TARGETARCH alpine:latest
 
