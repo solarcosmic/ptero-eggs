@@ -6,7 +6,8 @@ FROM        --platform=$TARGETOS/$TARGETARCH debian:bookworm-slim
 
 LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 
-RUN         apt update \
+RUN         apt update && apt upgrade -y \
+			&& apt install -y gcc g++ libgcc1 libc++-dev gdb libc6 git wget curl tar zip unzip \
 			&& update-locale lang=en_US.UTF-8 \
 			&& dpkg-reconfigure --frontend noninteractive locales \
 			&& useradd -m -d /home/container -s /bin/bash container
