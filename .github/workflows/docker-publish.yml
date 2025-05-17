@@ -6,6 +6,8 @@ on:
     paths:
       - 'ASF/Dockerfile'
       - 'ASF/entrypoint.sh'
+      - 'Jellyfin/Dockerfile'
+      - 'Jellyfin/entrypoint.sh'
 
 permissions:
   contents: read
@@ -31,3 +33,10 @@ jobs:
           context: ./ASF
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/ptero-asf:latest
+
+      - name: Build and Push Docker Image Jellyfin
+        uses: docker/build-push-action@v4
+        with:
+          context: ./Jellyfin
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/ptero-jellyfin:latest
