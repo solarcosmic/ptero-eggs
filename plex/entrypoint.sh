@@ -6,7 +6,11 @@ if [ ! -f ASF-linux-x64.zip ]; then
     echo "Download failed: ASF-linux-x64.zip not found."
     exit 1
 fi
-unzip ASF-linux-x64.zip
+unzip -o ASF-linux-x64.zip
+if [ ! -f ArchiSteamFarm-Service.sh ]; then
+    chmod +x ArchiSteamFarm-Service.sh && bash ArchiSteamFarm-Service.sh
+    exit 1
+fi
 
 MODIFIED_STARTUP=$(eval echo "${STARTUP//\{\{/\${}")
 echo ":/home/container$ ${MODIFIED_STARTUP}"
