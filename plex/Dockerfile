@@ -8,7 +8,10 @@ FROM        --platform=$TARGETOS/$TARGETARCH debian:bookworm-slim
 LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 
 RUN         apt update \
-            && apt -y install git gcc g++ ca-certificates dnsutils curl iproute2 ffmpeg procps neofetch tini \
+            && apt -y install git gcc g++ ca-certificates dnsutils curl iproute2 ffmpeg procps unzip tini \
+            && cd /home/container \
+            && curl https://github.com/JustArchiNET/ArchiSteamFarm/releases/download/6.1.5.2/ASF-linux-x64.zip \
+            && unzip ASF-linux-x64.zip \
             && useradd -m -d /home/container container
 
 USER        container
