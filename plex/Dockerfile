@@ -10,13 +10,13 @@ LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 RUN         apt update \
             && useradd -m -d /home/container container
 
-USER        container
-ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
+USER container
+ENV  USER=container HOME=/home/container
 
 STOPSIGNAL SIGINT
 
-COPY        --chown=container:container ./entrypoint.sh /entrypoint.sh
-RUN         chmod +x /entrypoint.sh
-ENTRYPOINT    ["/usr/bin/tini", "-g", "--"]
-CMD         ["/entrypoint.sh"]
+WORKDIR /home/container
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+CMD ["/bin/bash", "/entrypoint.sh"]
