@@ -10,13 +10,9 @@ LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 RUN         apk add --update --no-cache ca-certificates tzdata curl unzip \
 				&& adduser -D -h /home/container container
 
-USER container
-ENV  USER=container HOME=/home/container
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
 
-STOPSIGNAL SIGINT
-
-WORKDIR /home/container
-
-COPY ./entrypoint.sh /entrypoint.sh
-
-CMD ["/bin/bash", "/entrypoint.sh"]
+COPY        ./entrypoint.sh /entrypoint.sh
+CMD         [ "/bin/ash", "/entrypoint.sh" ]
