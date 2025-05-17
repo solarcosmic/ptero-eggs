@@ -7,17 +7,16 @@ FROM        --platform=$TARGETOS/$TARGETARCH alpine:latest
 
 LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 
-RUN         apk update \
-            && apk add curl unzip \
-            && useradd -m -d /home/container container
+RUN         apk add --update --no-cache ca-certificates tzdata curl unzip tini \
+				&& adduser -D -h /home/container container
 
-USER container
-ENV  USER=container HOME=/home/container
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
 
 STOPSIGNAL SIGINT
 
-WORKDIR /home/container
-
-COPY ./entrypoint.sh /entrypoint.sh
-
-CMD ["/bin/bash", "/entrypoint.sh"]
+COPY        --chown=container:container ./entrypoint.sh /entrypoint.sh
+RUN         chmod +x /entrypoint.sh
+ENTRYPOINT    ["/sbin/tini", "-g", "--"]
+CMD         ["/entrypoint.sh"]
