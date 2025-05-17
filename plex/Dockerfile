@@ -7,8 +7,9 @@ FROM        --platform=$TARGETOS/$TARGETARCH debian:bullseye-slim
 
 LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 
-RUN         apk add --update --no-cache ca-certificates tzdata curl unzip libicu72 \
-				&& adduser -D -h /home/container container
+RUN         apt-get update \
+            && apt-get install -y --no-install-recommends ca-certificates tzdata curl unzip libicu72 \
+            && useradd -m -d /home/container -s /bin/bash container
 
 USER        container
 ENV         USER=container HOME=/home/container
