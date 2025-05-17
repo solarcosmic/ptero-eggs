@@ -12,7 +12,7 @@ if [ ! -f ArchiSteamFarm-Service.sh ]; then
     exit 1
 fi
 chmod +x ArchiSteamFarm-Service.sh
-bash ArchiSteamFarm-Service.sh
+./ArchiSteamFarm-Service.sh
 
 MODIFIED_STARTUP=$(eval echo "${STARTUP//\{\{/\${}")
 echo ":/home/container$ ${MODIFIED_STARTUP}"
