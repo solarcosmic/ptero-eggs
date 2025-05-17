@@ -3,11 +3,12 @@
 # Environment: Java
 # Minimum Panel Version: 0.6.0
 # ----------------------------------
-FROM        --platform=$TARGETOS/$TARGETARCH justarchi/archisteamfarm:main
+FROM        --platform=$TARGETOS/$TARGETARCH alpine:latest
 
 LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 
-RUN         apt update \
+RUN         apk update \
+            && apk add curl unzip \
             && useradd -m -d /home/container container
 
 USER container
