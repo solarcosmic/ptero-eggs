@@ -7,10 +7,6 @@ on:
       - 'plex/Dockerfile'
       - 'plex/entrypoint.sh'
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
