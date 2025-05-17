@@ -14,7 +14,7 @@ RUN         apt update && apt upgrade -y \
 
 USER        container
 ENV         USER=container HOME=/home/container
-ENV         DEBIAN_FRONTEND noninteractive
+ENV         DEBIAN_FRONTEND=noninteractive
 
 WORKDIR     /home/container
 
