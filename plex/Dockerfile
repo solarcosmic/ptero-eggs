@@ -7,7 +7,7 @@ FROM        --platform=$TARGETOS/$TARGETARCH alpine:latest
 
 LABEL       author="solarcosmic" maintainer="abe@solarcosmic.net"
 
-RUN         apk add --update --no-cache ca-certificates tzdata curl unzip \
+RUN         apk add --update --no-cache ca-certificates tzdata curl unzip gcompat \
 				&& adduser -D -h /home/container container
 
 USER        container
