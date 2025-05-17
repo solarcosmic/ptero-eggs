@@ -1,13 +1,14 @@
 #!/bin/bash
 cd /home/container
 
-# Output Current Java Version
-# curl https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-x64.zip ## only really needed to show what version is being used. Should be changed for different applications
-# unzip ASF-linux-x64.zip
+curl -L -o ASF-linux-x64.zip https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-x64.zip
+if [ ! -f ASF-linux-x64.zip ]; then
+    echo "Download failed: ASF-linux-x64.zip not found."
+    exit 1
+fi
+unzip ASF-linux-x64.zip
 
-# Replace Startup Variables
-MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
+MODIFIED_STARTUP=$(eval echo "${STARTUP//\{\{/\${}")
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
-# Run the Server
 ${MODIFIED_STARTUP}
