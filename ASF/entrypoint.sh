@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 cd /home/container
 
 curl -L -o ASF-linux-x64.zip https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-x64.zip
